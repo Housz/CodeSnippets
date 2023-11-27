@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-add_executable(testThread)
+set (CMAKE_CXX_STANDARD 17)
 
-file(GLOB sources CMAKE_CONFIGURE_DEPENDS *.cpp *.h)
+add_executable(testThread test_thread.cpp)
 
-target_sources(testThread PUBLIC ${sources})
