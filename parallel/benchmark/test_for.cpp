@@ -33,7 +33,7 @@ int main()
 	// tbb parallel for
 	beg_time = clk.now();
 	tbb::parallel_for_each(ar.begin(), ar.end(), myrand);
-	cout << "bb::parallel_for_each" << chrono::duration_cast<chrono::milliseconds>(clk.now() - beg_time).count() << "ms" << endl;
+	cout << "tbb::parallel_for_each" << chrono::duration_cast<chrono::milliseconds>(clk.now() - beg_time).count() << "ms" << endl;
 
 	beg_time = clk.now();
 	tbb::parallel_for(size_t(0), size_t(ar.size()), [&](size_t i){

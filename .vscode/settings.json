@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"execution": "cpp",
-		"array": "cpp"
+		"array": "cpp",
+		"algorithm": "cpp"
 	}
 }
