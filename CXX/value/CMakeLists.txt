@@ -1,0 +1,1 @@
+add_executable(testvalue test_value.cpp)
