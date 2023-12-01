@@ -11,3 +11,6 @@ target_link_libraries(testfor PUBLIC TBB::tbb)
 
 add_executable(bmfor bm_for.cpp)
 target_link_libraries(bmfor PUBLIC TBB::tbb benchmark::benchmark)
+
+add_executable(bmfornd bm_for_nd.cpp)
+target_link_libraries(bmfornd PUBLIC TBB::tbb benchmark::benchmark)
