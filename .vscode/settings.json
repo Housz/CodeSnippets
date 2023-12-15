@@ -5,6 +5,7 @@
 		"list": "cpp",
 		"vector": "cpp",
 		"xstring": "cpp",
-		"ostream": "cpp"
+		"ostream": "cpp",
+		"functional": "cpp"
 	}
 }

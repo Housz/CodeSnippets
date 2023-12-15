@@ -6,3 +6,6 @@ target_link_libraries(helloworld PUBLIC OpenVDB::openvdb)
 
 add_executable(grid 1grid.cpp)
 target_link_libraries(grid PUBLIC OpenVDB::openvdb)
+
+add_executable(mygrid 2mygrid.cpp)
+target_link_libraries(mygrid PUBLIC OpenVDB::openvdb)
