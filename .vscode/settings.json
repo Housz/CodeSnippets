@@ -6,6 +6,21 @@
 		"vector": "cpp",
 		"xstring": "cpp",
 		"ostream": "cpp",
-		"functional": "cpp"
+		"functional": "cpp",
+		"random": "cpp",
+		"tuple": "cpp",
+		"array": "cpp",
+		"chrono": "cpp",
+		"execution": "cpp",
+		"forward_list": "cpp",
+		"initializer_list": "cpp",
+		"ranges": "cpp",
+		"span": "cpp",
+		"xhash": "cpp",
+		"xtree": "cpp",
+		"xutility": "cpp",
+		"cmath": "cpp",
+		"complex": "cpp",
+		"iostream": "cpp"
 	}
 }

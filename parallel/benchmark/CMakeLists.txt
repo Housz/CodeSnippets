@@ -14,3 +14,6 @@ target_link_libraries(bmfor PUBLIC TBB::tbb benchmark::benchmark)
 
 add_executable(bmfornd bm_for_nd.cpp)
 target_link_libraries(bmfornd PUBLIC TBB::tbb benchmark::benchmark)
+
+add_executable(bmfor3d bm_for_3d.cpp)
+target_link_libraries(bmfor3d PUBLIC TBB::tbb benchmark::benchmark)
