@@ -26,9 +26,9 @@ vec3 drawGrid(in vec2 uv)
 }
 
 // draw segment a->b
-bool drawSegment(in vec2 p, in vec2 a, in vec2 b, in float width)
+float drawSegment(in vec2 p, in vec2 a, in vec2 b, in float width)
 {
-	bool colored = false;
+	float color = 0.;
 
 	vec2 ab = b - a;
 	vec2 ap = p - a;
@@ -38,15 +38,23 @@ bool drawSegment(in vec2 p, in vec2 a, in vec2 b, in float width)
 	float d = length(proj * ab - ap);
 
 	if(d <= width) {
-		colored = true;
+		color = 1.;
 	}
 
-	return colored;
+	// color = smoothstep(width, 0.9*width, d);
+
+	return color;
 }
 
 float funcSin(in float x)
 {
-	return sin(x + iTime);
+	// return sin(x + iTime);
+	return sin(x + 1.);
+}
+
+float funcSmoothStep(in float x)
+{
+	return smoothstep(0., .5, x);
 }
 
 float plot(in vec2 uv)
@@ -57,11 +65,8 @@ float plot(in vec2 uv)
 		float xn  = toUV(vec2(x, 0.)).x;
 		float xn1 = toUV(vec2(x + 1., 0.)).x;
 
-		bool colored = drawSegment(vec2(uv), vec2(xn, funcSin(xn)), vec2(xn1, funcSin(xn1)), fwidth(uv.x));
-
-		if(colored) {
-			color += 1.;
-		}
+		// color += drawSegment(vec2(uv), vec2(xn, funcSin(xn)), vec2(xn1, funcSin(xn1)), fwidth(uv.x));
+		color += drawSegment(vec2(uv), vec2(xn, funcSmoothStep(xn)), vec2(xn1, funcSmoothStep(xn1)), fwidth(uv.x));
 	}
 
 	return clamp(color, 0., 1.);
