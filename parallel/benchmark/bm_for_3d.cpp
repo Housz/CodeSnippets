@@ -2,9 +2,10 @@
 ------------------------------------------------------------
 Benchmark                  Time             CPU   Iterations
 ------------------------------------------------------------
-serial_ijk             21121 ms        13562 ms            1
-serial_kji             12488 ms         7578 ms            1
-tbb_blocked3d_kji       1566 ms         1516 ms            1
+serial_ijk        3.3715e+10 ns   1.9219e+10 ns            1
+serial_kji        1.3088e+10 ns   7031250000 ns            1
+tbb_blocked3d_kji 2030161400 ns   1515625000 ns            1
+tbb_blocked3d_ijk 4134336500 ns   1406250000 ns            1
 
 */
 
@@ -20,8 +21,7 @@ tbb_blocked3d_kji       1566 ms         1516 ms            1
 
 size_t n = 1 << 10;
 
-std::vector<float> v(n *n *n);
-
+std::vector<double> v(n * n * n);
 
 
 static void serial_kji(benchmark::State &state)
@@ -81,9 +81,31 @@ static void tbb_blocked3d_kji(benchmark::State &state)
 	}
 }
 
+static void tbb_blocked3d_ijk(benchmark::State &state)
+{
+	for (auto _ : state)
+	{
+		tbb::parallel_for(tbb::blocked_range3d<size_t>(0, n, 0, n, 0, n),
+			[&](tbb::blocked_range3d<size_t> r){
+				for (size_t i = r.pages().begin(); i < r.pages().end(); i++)
+				{
+					for (size_t j = r.cols().begin(); j < r.cols().end(); j++)
+					{
+						for (size_t k = r.rows().begin(); k < r.rows().end(); k++)
+						{
+							v[i + j * n + k * n * n] += sin(i)*cos(i);
+						}
+					}
+				}
+				
+			}
+		);
+	}
+}
 
 BENCHMARK(serial_ijk);
 BENCHMARK(serial_kji);
 BENCHMARK(tbb_blocked3d_kji);
+BENCHMARK(tbb_blocked3d_ijk);
 
 BENCHMARK_MAIN();
